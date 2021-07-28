@@ -1,6 +1,7 @@
 package by.vsu.epam.dao.memory;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,17 +17,17 @@ public class RepositoryImpl implements Repository {
     private RepositoryImpl() {
         newAccount(1L, "Иванов" , 25_00L);
         newAccount(2L, "Петров" , 60_00L);
-        newAccount(3L, "Сидоров", 5_00L );
-        newTransfer(1L , null, 1L  , 100_00L, 15, 10, 2020, 13, 15);
-        newTransfer(2L , 1L  , 2L  ,  25_00L, 16, 10, 2020, 9 , 35);
-        newTransfer(3L , 1L  , 3L  ,  35_00L, 16, 10, 2020, 9 , 45);
-        newTransfer(4L , 1L  , null,  10_00L, 16, 10, 2020, 15, 30);
-        newTransfer(5L , 3L  , null,  35_00L, 16, 10, 2020, 16, 55);
-        newTransfer(6L , null, 2L  ,  45_00L, 16, 10, 2020, 10, 15);
-        newTransfer(7L , 2L  , 3L  ,   5_00L, 17, 10, 2020, 10, 20);
-        newTransfer(8L , 1L  , null,   5_00L, 17, 10, 2020, 16, 15);
-        newTransfer(9L , 2L  , null,   5_00L, 17, 10, 2020, 17, 25);
-        newTransfer(10L, 3L  , null,   5_00L, 17, 10, 2020, 17, 50);
+        newAccount(3L, "Сидоров",  0_00L);
+        newTransfer(1L , null, 1L  , 100_00L, -3, 13, 15);
+        newTransfer(2L , 1L  , 2L  ,  25_00L, -2, 9 , 35);
+        newTransfer(3L , 1L  , 3L  ,  35_00L, -2, 9 , 45);
+        newTransfer(4L , 1L  , null,  10_00L, -2, 15, 30);
+        newTransfer(5L , 3L  , null,  35_00L, -2, 16, 55);
+        newTransfer(6L , null, 2L  ,  45_00L, -2, 10, 15);
+        newTransfer(7L , 2L  , 3L  ,   5_00L, -1, 10, 20);
+        newTransfer(8L , 1L  , null,   5_00L, -1, 16, 15);
+        newTransfer(9L , 2L  , null,   5_00L, -1, 17, 25);
+        newTransfer(10L, 3L  , null,   5_00L, -1, 17, 50);
     }
 
     private void newAccount(Long id, String name, Long balance) {
@@ -37,14 +38,17 @@ public class RepositoryImpl implements Repository {
         accounts.put(id, account);
     }
 
-    private void newTransfer(Long id, Long srcId, Long destId, Long summ, int day, int month, int year, int hour, int minute) {
+    private void newTransfer(Long id, Long srcId, Long destId, Long summ, int day, int hour, int minute) {
         Transfer transfer = new Transfer();
         transfer.setId(id);
         transfer.setSrc(srcId != null ? accounts.get(srcId) : null);
         transfer.setDest(destId != null ? accounts.get(destId) : null);
         transfer.setSumm(summ);
         Calendar c = Calendar.getInstance();
-        c.set(year, month, day, hour, minute);
+        c.setTime(new Date());
+        c.add(Calendar.DAY_OF_MONTH, day);
+        c.set(Calendar.HOUR_OF_DAY, hour);
+        c.set(Calendar.MINUTE, minute);
         transfer.setDate(c.getTime());
         transfers.put(id, transfer);
     }

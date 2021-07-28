@@ -5,5 +5,6 @@ public final class ContextFactory {
 
     public static Context newInstance() {
         return new ContextImpl();
+//        return new ContextExceptionsImpl();
     }
 }

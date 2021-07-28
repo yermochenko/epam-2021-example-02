@@ -6,12 +6,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import by.vsu.epam.dao.DaoException;
 import by.vsu.epam.dao.TransferDao;
 import by.vsu.epam.domain.Transfer;
 
 public class TransferDaoImpl extends BaseDaoImpl<Transfer> implements TransferDao {
     @Override
-    public List<Transfer> readByAccount(Long accountId, Date begin, Date end) {
+    public List<Transfer> readByAccount(Long accountId, Date begin, Date end) throws DaoException {
         List<Transfer> result = new ArrayList<>();
         for(Transfer transfer : getMap().values()) {
             if(((transfer.getSrc() != null && transfer.getSrc().getId().equals(accountId))
@@ -21,12 +22,15 @@ public class TransferDaoImpl extends BaseDaoImpl<Transfer> implements TransferDa
                 result.add(transfer);
             }
         }
-        Collections.sort(result, (transfer1, transfer2) -> transfer1.getDate().compareTo(transfer2.getDate()));
+        Collections.sort(
+            result,
+            (transfer1, transfer2) -> transfer1.getDate().compareTo(transfer2.getDate())
+        );
         return result;
     }
 
     @Override
-    protected Map<Long, Transfer> getMap() {
+    protected Map<Long, Transfer> getMap() throws DaoException {
         return getRepository().getTransfers();
     }
 

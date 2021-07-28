@@ -6,18 +6,22 @@ import java.util.List;
 import java.util.Map;
 
 import by.vsu.epam.dao.AccountDao;
+import by.vsu.epam.dao.DaoException;
 import by.vsu.epam.domain.Account;
 
 public class AccountDaoImpl extends BaseDaoImpl<Account> implements AccountDao {
     @Override
-    public List<Account> readAll() {
+    public List<Account> readAll() throws DaoException {
         List<Account> accounts = new ArrayList<>(getMap().values());
-        Collections.sort(accounts, (account1, account2) -> Long.compare(account1.getId(), account2.getId()));
+        Collections.sort(
+            accounts,
+            (account1, account2) -> Long.compare(account1.getId(), account2.getId())
+        );
         return accounts;
     }
 
     @Override
-    protected Map<Long, Account> getMap() {
+    protected Map<Long, Account> getMap() throws DaoException {
         return getRepository().getAccounts();
     }
 }
