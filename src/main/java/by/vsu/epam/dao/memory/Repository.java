@@ -9,4 +9,8 @@ public interface Repository {
     Map<Long, Account> getAccounts();
 
     Map<Long, Transfer> getTransfers();
+
+    void saveAccounts() throws RepositoryException;
+
+    void saveTransfers() throws RepositoryException;
 }

@@ -1,6 +1,8 @@
 package by.vsu.epam.domain;
 
-public abstract class Entity {
+import java.io.Serializable;
+
+public abstract class Entity implements Serializable {
     private Long id;
 
     public Long getId() {

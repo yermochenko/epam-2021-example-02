@@ -66,4 +66,10 @@ public class RepositoryImpl implements Repository {
     public static RepositoryImpl getInstance() {
         return instance;
     }
+
+    @Override
+    public void saveAccounts() {}
+
+    @Override
+    public void saveTransfers() {}
 }
