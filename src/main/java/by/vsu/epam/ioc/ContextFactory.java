@@ -6,6 +6,7 @@ public final class ContextFactory {
     public static Context newInstance() {
 //        return new ContextImpl();
 //        return new ContextExceptionsImpl();
-        return new ContextSerializationImpl();
+//        return new ContextSerializationImpl();
+        return new ContextTxtImpl();
     }
 }
