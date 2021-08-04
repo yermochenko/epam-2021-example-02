@@ -6,7 +6,7 @@ import by.vsu.epam.domain.Entity;
 
 public abstract class DaoDecoratorImpl<T extends Entity, D extends Dao<T>> implements Dao<T> {
     private D impl;
-    private static final double THRESHOLD = 0.01;
+    private static final double THRESHOLD = 0.02;
 
     protected D getImpl() throws DaoException {
         if(Math.random() < THRESHOLD) {

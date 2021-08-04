@@ -4,9 +4,13 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import by.vsu.epam.service.ServiceException;
 
 public class Menu {
+    private static final Logger logger = LogManager.getLogger();
     private Map<Integer, MenuItem> items = new LinkedHashMap<>();
 
     public void add(int number, MenuItem item) {
@@ -41,6 +45,7 @@ public class Menu {
         } catch(IllegalArgumentException e) {
             System.out.println("Неверный номер пункта меню. Необходимо ввести номер существующего пункта меню.");
         } catch(ServiceException e) {
+            logger.error("Ошибка обработки данных", e);
             System.out.println("Ошибка обработки данных");
         }
         return false;
