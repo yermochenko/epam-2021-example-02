@@ -7,6 +7,7 @@ public final class ContextFactory {
 //        return new ContextImpl();
 //        return new ContextExceptionsImpl();
 //        return new ContextSerializationImpl();
-        return new ContextTxtImpl();
+//        return new ContextTxtImpl();
+        return new ContextXmlImpl();
     }
 }

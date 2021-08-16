@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://epam.vsu.by/final-project-example/transfers" xmlns:tns="http://epam.vsu.by/final-project-example/transfers" elementFormDefault="qualified">
+    <element name="transfers">
+        <complexType>
+            <sequence>
+                <element name="transfer" maxOccurs="unbounded">
+                    <complexType>
+                        <sequence>
+                            <element name="id" type="positiveInteger"/>
+                            <element name="source-account-id" type="positiveInteger" minOccurs="0"/>
+                            <element name="destination-account-id" type="positiveInteger" minOccurs="0"/>
+                            <element name="summ" type="positiveInteger"/>
+                            <element name="date" type="dateTime"/>
+                        </sequence>
+                    </complexType>
+                </element>
+            </sequence>
+        </complexType>
+    </element>
+</schema>

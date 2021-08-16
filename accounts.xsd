@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://epam.vsu.by/final-project-example/accounts" xmlns:tns="http://epam.vsu.by/final-project-example/accounts" elementFormDefault="qualified">
+    <element name="accounts">
+        <complexType>
+            <sequence>
+                <element name="account" maxOccurs="unbounded">
+                    <complexType>
+                        <sequence>
+                            <element name="id" type="positiveInteger"/>
+                            <element name="name" type="string"/>
+                            <element name="balance" type="nonNegativeInteger"/>
+                        </sequence>
+                    </complexType>
+                </element>
+            </sequence>
+        </complexType>
+    </element>
+</schema>
